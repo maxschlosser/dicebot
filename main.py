@@ -17,22 +17,6 @@ bot = commands.Bot(command_prefix='!')
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
-
-@bot.command(name='99', help='Brooklyn 99 Quote')
-async def nine_nine(ctx):
-    brooklyn_99_quotes = [
-        'I\'m the human form of the 💯 emoji.',
-        'Bingpot!',
-        (
-            'Cool. Cool cool cool cool cool cool cool, '
-            'no doubt no doubt no doubt no doubt.'
-        ),
-    ]
-
-    response = random.choice(brooklyn_99_quotes)
-    await ctx.send(response)
-
-
 @bot.command(name='roll', help='Roll XdY', pass_context=True)
 async def roll(ctx, dice: int, sides: int):
     dice_result = [
