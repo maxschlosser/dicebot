@@ -1,13 +1,11 @@
 # bot.py
 import os
 import random
-from dotenv import load_dotenv
 
 # 1
 from discord.ext import commands
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = 'NzE4NzQ1MTgxMjYzNzU3Mzc3.XttVnA.8FLGJ9ChxQvysnYMmPSQ5nX9mHU'
 
 # 2
 bot = commands.Bot(command_prefix='!')
@@ -16,6 +14,7 @@ bot = commands.Bot(command_prefix='!')
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
+
 
 @bot.command(name='roll', help='Roll XdY', pass_context=True)
 async def roll(ctx, dice: int, sides: int):
@@ -29,10 +28,10 @@ async def roll(ctx, dice: int, sides: int):
     result = result + ', '.join(dice_str) + " total: " + str(total)
     await ctx.send(result)
 
+
 @roll.error
 async def roll_error(ctx, error):
     await ctx.send("Usage: !roll amount sides, e. g. !roll 2 4")
-
 
 
 bot.run(TOKEN)
