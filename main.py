@@ -1,11 +1,12 @@
 # bot.py
 import os
 import random
-
+import dotenv
 # 1
 from discord.ext import commands
 
-TOKEN = 'NzE4NzQ1MTgxMjYzNzU3Mzc3.XttVnA.8FLGJ9ChxQvysnYMmPSQ5nX9mHU'
+dotenv.load_dotenv('.env')
+
 
 # 2
 bot = commands.Bot(command_prefix='!')
@@ -40,4 +41,4 @@ async def roll_error(ctx, error):
     await ctx.send("Usage: !roll amount sides, e. g. !roll 2 4")
 
 
-bot.run(TOKEN)
+bot.run(os.getenv('TOKEN'))
