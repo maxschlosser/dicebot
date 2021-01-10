@@ -22,11 +22,17 @@ async def roll(ctx, dice: int, sides: int):
         random.choice(range(1, int(sides) + 1))
         for _ in range(int(dice))
     ]
+
     total = sum(dice_result)
     dice_str = [str(die) for die in dice_result]
     result = "I rolled " + str(dice) + " d" + str(sides) + " for " + ctx.message.author.mention + ": " + os.linesep
     result = result + ', '.join(dice_str) + " total: " + str(total)
     await ctx.send(result)
+
+
+@bot.command(name='fuck', help='fuck', pass_context=True)
+async def fuck(ctx):
+    await ctx.send("Fuck")
 
 
 @roll.error
