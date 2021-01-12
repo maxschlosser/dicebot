@@ -41,7 +41,7 @@ async def roll_error(ctx, error):
 
 
 @bot.command(name='restart', help='Restarts dicebot for users with the "GM" role', pass_context=True)
-@commands.has_role('Kadaver')
+@commands.has_role('GM')
 async def restart(ctx):
     await ctx.send("Restarting and updating for " + ctx.message.author.mention)
     exit()
