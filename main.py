@@ -43,7 +43,17 @@ async def roll_error(ctx, error):
 @bot.command(name='restart', help='Restarts dicebot for users with the "GM" role', pass_context=True)
 @commands.has_role('GM')
 async def restart(ctx):
-    await ctx.send("Restarting and updating for "+ctx.message.author.mention)
+    await ctx.send("Restarting and updating for " + ctx.message.author.mention)
     exit()
+
+
+@restart.error
+async def restart_error(ctx, error):
+    if isinstance(error, commands.MissingRole):
+        await ctx.send("I'm sorry, " + ctx.message.author.mention +
+                       ". I'm afraid that's something I cannot allow to happen.")
+    else:
+        await ctx.send("Uh-oh.")
+
 
 bot.run(os.getenv('TOKEN'))
