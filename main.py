@@ -33,12 +33,11 @@ async def roll(ctx, dice: int, sides: int):
 
 @bot.command(name='fuck', help='fuck', pass_context=True)
 async def fuck(ctx):
-    await ctx.send("Fuck"+ctx.message.author.mention)
+    await ctx.send("Fuck "+ctx.message.author.mention)
 
 
 @roll.error
 async def roll_error(ctx, error):
     await ctx.send("Usage: !roll amount sides, e. g. !roll 2 4")
-
 
 bot.run(os.getenv('TOKEN'))
