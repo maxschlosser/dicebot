@@ -32,7 +32,7 @@ async def roll(ctx, dice: int, sides: int):
 
 @bot.command(name='fuck', help='fuck', pass_context=True)
 async def fuck(ctx):
-    await ctx.send("Fuck " + ctx.message.author.mention)
+    await ctx.send("Fuck you, " + ctx.message.author.mention + "!")
 
 
 @roll.error
