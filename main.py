@@ -7,7 +7,6 @@ from discord.ext import commands
 
 dotenv.load_dotenv('.env')
 
-
 # 2
 bot = commands.Bot(command_prefix='!')
 
@@ -33,11 +32,19 @@ async def roll(ctx, dice: int, sides: int):
 
 @bot.command(name='fuck', help='fuck', pass_context=True)
 async def fuck(ctx):
-    await ctx.send("Fuck "+ctx.message.author.mention)
+    await ctx.send("Fuck " + ctx.message.author.mention)
 
 
 @roll.error
 async def roll_error(ctx, error):
     await ctx.send("Usage: !roll amount sides, e. g. !roll 2 4")
+
+
+@bot.command(name='restart', help='Restarts dicebot for users with the "GM" role', pass_context=True)
+@commands.has_role('GM')
+async def restart(ctx):
+    await ctx.send("Restarting and updating for " + ctx.message.author.mention)
+    exit()
+
 
 bot.run(os.getenv('TOKEN'))
