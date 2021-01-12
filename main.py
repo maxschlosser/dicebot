@@ -46,5 +46,4 @@ async def restart(ctx):
     await ctx.send("Restarting and updating for "+ctx.message.author.mention)
     exit()
 
-
 bot.run(os.getenv('TOKEN'))
