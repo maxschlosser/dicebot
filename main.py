@@ -37,7 +37,7 @@ async def roll(ctx, dice: int, sides: int):
         for _ in range(int(dice))
     ]
     total = sum(dice_result)
-    result = f"Rolled {dice}d{sides} for {ctx.message.author.mention}: " + os.linesep + f"{dice_result}, total: {total}"
+    result = f"Rolled {dice}d{sides} for {ctx.message.author.mention}: " + os.linesep + f"{dice_result} total: {total}"
     await ctx.send(result)
 
 
