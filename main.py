@@ -1,14 +1,14 @@
+#!/usr/bin/python3
 # bot.py
-import os
-import random
-import dotenv
-# 1
-from discord.ext import commands
+import os      # allows speaking to the host
+import random  # makes random things
+import dotenv  # enables loading the .env file for local programming
 
-dotenv.load_dotenv('.env')
+from discord.ext import commands  # enables talking to Discord
 
-# 2
-bot = commands.Bot(command_prefix='!')
+dotenv.load_dotenv('.env')  # makes the TOKEN available so we can use it later
+
+bot = commands.Bot(command_prefix='!')  # sets the command prefix for the bot
 
 
 @bot.event
@@ -97,4 +97,4 @@ async def restart_error(ctx, error):
         await ctx.send("Uh-oh.")
 
 
-bot.run(os.getenv('TOKEN'))
+bot.run(os.getenv('TOKEN'))  # Starts the bot
