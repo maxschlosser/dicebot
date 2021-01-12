@@ -13,6 +13,10 @@ bot = commands.Bot(command_prefix='!')
 
 @bot.event
 async def on_ready():
+    """
+    Runs when the bot has connected to discord and can respond to commands.
+    :return:
+    """
     print(f'{bot.user.name} has connected to Discord!')
 
 
@@ -41,14 +45,25 @@ async def roll(ctx, dice: int, sides: int):
     await ctx.send(result)
 
 
-@bot.command(name='fuck', help='fuck', pass_context=True)
-async def fuck(ctx):
-    await ctx.send("Fuck you, " + ctx.message.author.mention + "!")
-
-
 @roll.error
 async def roll_error(ctx, error):
+    """
+    Runs if anyone tries to !roll anything else than two positive integers.
+    :param ctx:
+    :param error:
+    :return:
+    """
     await ctx.send("Usage: !roll amount sides, e. g. !roll 2 4")
+
+
+@bot.command(name='fuck', help='fuck', pass_context=True)
+async def fuck(ctx):
+    """
+    Responds with "Fuck you @author"
+    :param ctx: The discord context
+    :return:
+    """
+    await ctx.send("Fuck you, " + ctx.message.author.mention + "!")
 
 
 @bot.command(name='restart', help='Restarts dicebot for users with the "GM" role', pass_context=True)
