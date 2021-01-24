@@ -46,6 +46,17 @@ async def roll(ctx, dice: int, sides: int):
     await ctx.send(result)
 
 
+@bot.command(name='modroll', help='Roll XdY + Z', pass_context=True)
+async def modroll(ctx, dice: int, sides: int, bonus: int):
+    dice_result = [
+        random.choice(range(1, int(sides) +1))
+        for _ in range(int(dice))
+    ]
+    total = sum(dice_result) + bonus
+    result = f"Rolled {dice}d{sides} + {bonus} for {ctx.message.author.mention}: " + os.linesep + f"{dice_result} total: {total}"
+    await ctx.send(result)
+
+
 @roll.error
 async def roll_error(ctx, error):
     """
