@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 # bot.py
-import os      # allows speaking to the host
+import os  # allows speaking to the host
 import random  # makes random things
 import dotenv  # enables loading the .env file for local programming
-
 from discord.ext import commands  # enables talking to Discord
 
-dotenv.load_dotenv('.env')  # makes the TOKEN available so we can use it later
+from scry.request import Jace
+
+dotenv.load_dotenv('./.env')  # makes the TOKEN available so we can use it later
 
 bot = commands.Bot(command_prefix='!')  # sets the command prefix for the bot
 
@@ -95,6 +96,12 @@ async def restart_error(ctx, error):
                        ". I'm afraid that's something I cannot allow to happen.")
     else:
         await ctx.send("Uh-oh.")
+
+
+@bot.command(name="commander", help="Returns a random MtG commander", pass_context=True)
+async def surprise_commander(ctx):
+    card = random.choice(Jace().card().type("legendary").execute())
+    await ctx.send(f"{card['name']} {card['scryfall_uri']}")
 
 
 bot.run(os.getenv('TOKEN'))  # Starts the bot
