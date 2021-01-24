@@ -1,5 +1,6 @@
 import requests
 import random
+import time
 
 class Jace:
     def __init__(self):
@@ -36,6 +37,7 @@ class Jace:
         return self
 
     def execute(self):
+        time.sleep(0.1)
         r = requests.get(self.url)
         return [card  for card in r.json()["data"]]
 
