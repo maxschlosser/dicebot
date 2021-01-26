@@ -36,6 +36,10 @@ class Jace:
         self.url = f"{self.url}t:{type}+"
         return self
 
+    def id_atleast(self, id):
+        self.url = f"{self.url}id>={id}+"
+        return self
+
     def execute(self):
         time.sleep(0.1)
         r = requests.get(self.url)
@@ -43,7 +47,7 @@ class Jace:
 
 
 def main():
-    r = Jace().card().type("Jace").type("legendary").cmc(5, "not").execute()
+    r = Jace().card().type("legendary").id_atleast("5").execute()
     card = random.choice(r)
     if card["layout"] != 'normal':
         print(card["name"], card["scryfall_uri"])

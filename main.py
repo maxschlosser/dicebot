@@ -111,7 +111,7 @@ async def restart_error(ctx, error):
 
 @bot.command(name="commander", help="Returns a random MtG commander", pass_context=True)
 async def surprise_commander(ctx):
-    card = random.choice(Jace().card().type("legendary").type("creature").execute())
+    card = random.choice(Jace().card().type("legendary").type("creature").id_atleast("2").execute())
     await ctx.send(f"{card['name']} {card['scryfall_uri']}")
 
 
